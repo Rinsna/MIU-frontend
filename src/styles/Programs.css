@@ -1,0 +1,192 @@
+.programs-section {
+  background-color: var(--bg-light);
+  position: relative;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.section-header {
+  margin-bottom: 4rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-badge {
+  display: inline-block;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 3rem;
+  color: var(--secondary);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Grid Layout */
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Card Styling */
+.program-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+  border: 1px solid rgba(0,0,0,0.05);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.program-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background-color: var(--primary);
+  transition: width var(--transition-normal);
+  z-index: 2;
+}
+
+.program-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-hover);
+}
+
+.program-card:hover::after {
+  width: 100%;
+}
+
+.program-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(243, 112, 33, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  transition: all var(--transition-normal);
+}
+
+.program-card:hover .program-icon-wrapper {
+  background-color: var(--primary);
+}
+
+.program-icon {
+  font-size: 1.8rem;
+  transition: transform var(--transition-normal);
+}
+
+.program-card:hover .program-icon {
+  transform: scale(1.1);
+}
+
+.program-title {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--secondary);
+}
+
+.program-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.program-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.program-highlight {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #2e7d32; /* Trust green */
+}
+
+.program-link {
+  font-weight: 700;
+  color: var(--secondary);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.program-link:hover {
+  color: var(--primary);
+}
+
+.programs-cta-container {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.btn-large {
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2.2rem;
+  }
+  
+  .programs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Programs Mobile Responsiveness */
+@media (max-width: 768px) {
+  .programs-section {
+    padding: 60px 0 !important;
+  }
+
+  .programs-section h2 {
+    font-size: 2rem !important;
+  }
+
+  .programs-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .program-card {
+    height: 250px !important;
+  }
+
+  .shield-text {
+    font-size: 3rem !important;
+  }
+}

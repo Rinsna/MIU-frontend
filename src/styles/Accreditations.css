@@ -1,0 +1,111 @@
+.accreditations-section {
+  background-color: white;
+  padding: 4rem 0;
+  border-bottom: 1px solid #eee;
+  overflow: hidden;
+}
+
+.accreditation-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.acc-title {
+  font-size: 2rem;
+  color: var(--secondary);
+  margin-bottom: 0.5rem;
+}
+
+.acc-desc {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+/* Continuous Scroll */
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  background: var(--bg-light);
+  padding: 2rem 0;
+}
+
+.marquee-content {
+  display: flex;
+  gap: 3rem;
+  animation: scrollMarquee 25s linear infinite;
+  white-space: nowrap;
+}
+
+.marquee-wrapper:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+.recognition-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  cursor: default;
+}
+
+.recognition-badge:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+.badge-shield {
+  font-size: 1.5rem;
+}
+
+.badge-text {
+  font-weight: 700;
+  color: var(--secondary);
+  font-size: 1.1rem;
+}
+
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 1.5rem));
+  }
+}
+
+/* Gradients for smooth fade out on the sides */
+.marquee-wrapper::before,
+.marquee-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+}
+
+.marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, white, transparent);
+}
+
+.marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, white, transparent);
+}
+
+@media (max-width: 768px) {
+  .recognition-badge {
+    padding: 0.75rem 1.5rem;
+  }
+  .badge-text {
+    font-size: 0.95rem;
+  }
+}

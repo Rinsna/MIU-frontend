@@ -1,0 +1,568 @@
+.lpu-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  font-family: var(--font-body);
+}
+
+/* Very top strip */
+.top-strip {
+  background-color: transparent;
+  padding: 8px 0;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.strip-flex {
+  display: flex;
+  justify-content: flex-end; /* Align all to the right */
+  align-items: center;
+}
+
+.edge-to-edge {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.strip-right {
+  display: flex;
+  align-items: center;
+}
+
+.top-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.top-links li a {
+  color: white; /* White to match the dark hero overlay */
+  padding: 4px 7px;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+}
+
+.top-links li a:hover {
+  color: var(--lpu-orange);
+}
+
+.top-links li.highlight-link a {
+  background-color: var(--lpu-orange);
+  color: var(--lpu-black);
+  padding: 4px 10px;
+  font-weight: 800;
+}
+
+.login-top-btn {
+  background: #ffffff;
+  color: #000000 !important;
+  padding: 4px 15px !important;
+  border-radius: 50px;
+  margin-left: 10px;
+  font-weight: 700;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  font-size: 10.5px !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-top-btn:hover {
+  background: var(--lpu-orange) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(232, 185, 25, 0.3);
+  border-color: transparent;
+}
+
+.top-logo-boxes {
+  display: flex;
+  margin-left: 20px;
+  /* Push to exact right edge */
+  border-right: none;
+}
+
+.top-logo-boxes span {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 20px;
+  margin-left: -1.5px; /* Create overlapping border effect */
+  color: white;
+}
+
+/* Admissions Black Strip */
+.admissions-strip {
+  background-color: var(--lpu-black);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 0;
+  text-transform: uppercase;
+}
+
+.ad-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ad-left span, .ad-right span {
+  color: #ccc;
+  margin-right: 15px;
+}
+
+.ad-left a {
+  color: var(--lpu-orange);
+  margin-right: 15px;
+  font-weight: 900;
+}
+
+.ad-left a:hover {
+  text-decoration: underline;
+}
+
+.apply-blink-btn {
+  background-color: var(--lpu-orange);
+  color: white !important;
+  padding: 5px 15px;
+  animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0.7; }
+}
+
+/* Main Nav Transparent Initial */
+.main-navbar {
+  background-color: transparent;
+  padding: 0;
+  box-shadow: none; /* No shadow when transparent */
+  width: 100%;
+  transition: all 0.3s ease;
+  z-index: 1001; /* Ensure it stays above everything */
+}
+
+/* Sticky State */
+.main-navbar.sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white; /* Becomes white upon scrolling */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  animation: slideDown 0.4s ease;
+}
+
+/* Adjust text for sticky white background */
+.main-navbar.sticky-nav .desktop-nav li a {
+  color: var(--lpu-black);
+}
+
+.main-navbar.sticky-nav .desktop-nav li a:hover {
+  background-color: var(--lpu-orange);
+  color: var(--lpu-black);
+}
+
+.main-navbar.sticky-nav .search-btn,
+.main-navbar.sticky-nav .hamburger-btn {
+  color: var(--lpu-black);
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+.nav-flex {
+  display: flex;
+  align-items: center;
+  position: relative; /* Context for absolute logo */
+}
+
+.desktop-nav {
+  margin-left: auto; /* Ensures links push to the right even when logo is absolute */
+}
+
+.nav-logo {
+  background-color: transparent;
+  padding: 10px 0;
+  min-width: 250px;
+  transition: all 0.3s ease;
+}
+
+/* Overlapping Left Logo Setup */
+.absolute-logo-wrapper {
+  position: absolute;
+  top: -32px; /* Hangs up over the top strip exactly like LPU */
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  transition: all 0.3s ease;
+  z-index: 1002;
+}
+
+.absolute-logo-wrapper.logo-sticky {
+  position: relative;
+  top: 0;
+  left: 0;
+  gap: 8px; /* Tighter gap for horizontal layout */
+}
+
+.abs-emblem {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.absolute-logo-wrapper.logo-sticky .abs-emblem {
+  width: 40px;
+  height: 40px;
+}
+
+/* LPU-style vertical initial boxes */
+.abs-miu-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.abs-miu-blocks span {
+  width: 22px;
+  height: 22px;
+  background-color: var(--lpu-orange);
+  color: var(--lpu-black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.absolute-logo-wrapper.logo-sticky .abs-miu-blocks {
+  flex-direction: row;
+}
+
+.absolute-logo-wrapper.logo-sticky .abs-miu-blocks span {
+  width: 25px;
+  height: 25px;
+  font-size: 15px;
+  border-radius: 2px;
+}
+
+/* Three stacked words exactly like LPU text */
+.abs-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5px;
+}
+
+.big-word {
+  font-family: var(--font-heading);
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1;
+  color: white; 
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.absolute-logo-wrapper.logo-sticky .abs-text {
+  display: none; /* Text intentionally hidden on sticky state */
+}
+
+/* Nav Actions adjustments */
+.main-nav-apply {
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.desktop-nav ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none; /* Ensure no bullets */
+}
+
+.has-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  min-width: 250px;
+  max-height: none; /* Removed to prevent sub-menu clipping */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  list-style: none; /* Force no dots */
+  display: flex; /* Using flex for reliable vertical stacking */
+  flex-direction: column;
+  padding: 10px 0;
+  margin: 0;
+  z-index: 2000;
+  border-top: 3px solid var(--lpu-orange);
+  
+  /* Robust hide/show logic */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.has-dropdown:hover > .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Submenu Styles for side-opening menus */
+.has-submenu {
+  position: relative;
+}
+
+.submenu {
+  position: absolute;
+  top: 0;
+  left: 100%; /* Opens to the right */
+  background-color: white;
+  min-width: 220px;
+  box-shadow: 2px 8px 16px rgba(0,0,0,0.15);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  margin: 0;
+  z-index: 2001;
+  border-left: 3px solid var(--lpu-orange);
+  
+  /* Submenu hide/show */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.has-submenu:hover > .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.dropdown-menu li {
+  width: 100%;
+}
+
+.dropdown-menu li a {
+  padding: 12px 20px !important;
+  color: var(--lpu-black) !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  display: block;
+  font-size: 14px;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f8f8f8 !important;
+  color: var(--lpu-orange) !important;
+}
+
+.submenu li a {
+  padding: 10px 20px !important;
+  font-size: 13px;
+}
+
+.submenu-arrow {
+  float: right;
+  font-size: 10px;
+  line-height: inherit;
+  opacity: 0.6;
+}
+
+.dropdown-plus {
+  font-size: 16px;
+  margin-left: 4px;
+  font-weight: 300;
+  vertical-align: middle;
+  transition: transform 0.3s;
+  display: inline-block;
+}
+
+.has-dropdown:hover .dropdown-plus {
+  transform: rotate(45deg); /* Optional: dynamic turn on hover */
+  color: var(--lpu-black);
+}
+
+.desktop-nav li a {
+  display: block;
+  padding: 25px 14px; /* Reduced from 20px to fit 8 items */
+  color: white;
+  font-weight: 600;
+  font-size: 13.5px; /* Slightly reduced for better fit */
+  text-transform: uppercase;
+  transition: 0.3s;
+  letter-spacing: 0.2px;
+}
+
+.desktop-nav li a:hover {
+  background-color: var(--lpu-orange);
+  color: var(--lpu-black);
+}
+
+.nav-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.search-btn, .hamburger-btn {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.hamburger-btn {
+  display: none; /* Hidden on desktop */
+}
+
+@media (max-width: 992px) {
+  .desktop-nav { display: none; }
+  .strip-left { display: none; }
+  .admissions-strip { display: none; }
+  .hamburger-btn { display: block; } /* Visible on mobile */
+}
+
+/* Mobile Menu Overlay Styles */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--lpu-black);
+  z-index: 2000;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  overflow-y: auto;
+  padding: 100px 30px 50px;
+}
+
+.mobile-menu-overlay.active {
+  transform: translateX(0);
+}
+
+.mobile-main-links {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 50px;
+}
+
+.mobile-main-links li {
+  margin-bottom: 25px;
+}
+
+.mobile-main-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 800;
+  display: block;
+}
+
+.mobile-utility-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 30px;
+}
+
+.mobile-utility-links a {
+  color: #999;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Base Mobile Navbar Overrides */
+@media (max-width: 1024px) {
+  .desktop-nav, .top-links {
+    display: none !important;
+  }
+  
+  .hamburger-btn {
+    display: block !important;
+  }
+  
+  .main-nav-apply {
+    padding: 8px 15px !important;
+    font-size: 0.75rem !important;
+    white-space: nowrap;
+  }
+  
+  .abs-text {
+    display: none !important;
+  }
+  
+  .abs-miu-blocks span {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  .top-strip {
+    height: 35px;
+  }
+  
+  .main-navbar {
+    height: 60px !important;
+  }
+
+  .nav-flex {
+    justify-content: flex-end;
+  }
+
+  .absolute-logo-wrapper {
+    left: 15px !important;
+    top: 5px !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .hamburger-btn {
+    display: none !important;
+  }
+  
+  .mobile-menu-overlay {
+    display: none !important;
+  }
+}

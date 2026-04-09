@@ -1,0 +1,111 @@
+/* Empty to let index.css handle global styles, 
+   we can add app specific layout wrappers here if needed */
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Splash Screen Setup */
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--lpu-black, #111);
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease-out;
+}
+
+.splash-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.splash-logo {
+  width: 150px; /* Slightly bigger for impact */
+  height: 150px;
+  object-fit: contain;
+  background: transparent;
+  border-radius: 50%; /* Clips white corners if it's a circular logo in a white box */
+  animation: singleRotate 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes singleRotate {
+  0% { transform: rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: rotate(360deg); opacity: 1; }
+}
+
+.splash-miu-blocks {
+  display: flex;
+  gap: 15px;
+  animation: slideUpFade 0.6s ease-out forwards;
+  opacity: 0;
+  animation-delay: 0.3s;
+}
+
+.splash-miu-blocks span {
+  width: 60px;
+  height: 60px;
+  background-color: var(--lpu-orange, #f7ca18);
+  color: var(--lpu-black, #111);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-heading, Arial, sans-serif);
+  font-size: 38px;
+  font-weight: 900;
+  border-radius: 4px;
+}
+
+@keyframes slideUpFade {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Page fade in - Made slower as requested */
+.app-container.page-fade-in {
+  animation: pageFadeIn 2s ease-out;
+}
+
+@keyframes pageFadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Global Mobile Overrides */
+@media (max-width: 768px) {
+  .sticky-ribbon {
+    display: none !important;
+  }
+
+  .app-container {
+    padding-bottom: 90px; /* Space for the floating bottom nav */
+  }
+  
+  .container {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+}
+
+/* Page transitions */
+.page-fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
