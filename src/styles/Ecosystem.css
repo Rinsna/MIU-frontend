@@ -1,198 +1,298 @@
-.ecosystem-scroll-wrapper {
-  height: 300vh; /* Scroll space for 3 stories */
-  position: relative;
+.ecosystem-section-container {
   background-color: #0b1120;
+  position: relative;
+  width: 100%;
+  padding: 0;
 }
 
-.ecosystem-sticky-container {
+/* Stack containers — layout cards + spacers in normal flow */
+.ecosystem-sticky-group,
+.ecosystem-static-group {
+  position: relative;
+  width: 100%;
+}
+
+
+/* ─── Sticky anchor ───────────────────────────────────────────
+   height: 0  →  never "falls out" of its own sticky range.
+   overflow: visible → lets the absolute card-inner paint outside.
+   ──────────────────────────────────────────────────────────── */
+.ecosystem-card {
   position: sticky;
+  height: 0;
+  overflow: visible;
+  width: 100%;
+}
+
+/* ─── Visual card (absolutely positioned inside sticky anchor) ─ */
+.card-inner {
+  position: absolute;
   top: 0;
+  left: 0;
+  width: 100%;
   height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  background-color: #000;
   overflow: hidden;
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.6);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.ecosystem-section {
-  background-color: #0b1120;
-  color: #ffffff;
-  padding: 0;
-  overflow: hidden;
+/* Adjust height for subsequent cards to fit viewport properly when stuck lower */
+.ecosystem-card:not(.card-1):not(.non-sticky-card) .card-inner {
+  height: calc(100vh - 190px - 80px);
+}
+
+.non-sticky-card {
   position: relative;
-  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  width: 100%;
+  z-index: 20;
 }
 
-.ecosystem-header {
+.non-sticky-card .card-inner {
+  position: relative;
+  height: 100vh;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.7);
+}
+
+
+
+/* ─── Spacer — adds scroll distance without ending sticky ───── *//* ─── Card 1: Hero layout ─────────────────────────────── */
+.card-inner-hero {
+  flex-direction: column;
+}
+
+.card-hero-header {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 40px;
   gap: 40px;
+  padding: 40px 60px 30px 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background-color: #000;
 }
 
-.ecosystem-title-box {
+.card-hero-label {
+  flex: 0 0 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.hero-label-text {
+  color: var(--lpu-orange);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.hero-label-line {
+  width: 50px;
+  height: 3px;
+  background: var(--lpu-orange);
+  border-radius: 2px;
+}
+
+.card-hero-tagline {
   flex: 1;
 }
 
-.ecosystem-main-label {
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: 4px;
-  color: #ff9000;
-  text-transform: uppercase;
-  display: block;
-}
-
-.ecosystem-tagline {
-  flex: 2;
-  font-size: 2.2rem;
+.card-hero-tagline h2 {
+  color: white;
+  font-size: 2.5rem; /* Slightly larger for impact */
   font-weight: 800;
   line-height: 1.2;
-  background: linear-gradient(to right, #fff, #9ca3af);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  margin: 0;
+  max-width: 900px;
 }
 
-/* Slider Layout */
-.ecosystem-slider-outer {
-  height: 500px;
+.card-hero-body {
+  display: flex;
+  flex: 1;
   overflow: hidden;
-  position: relative;
+  height: calc(100% - 190px); /* Fill remaining height below header */
 }
 
-.ecosystem-slider-container {
+.card-hero-story {
+  flex: 0 0 30%; /* Narrower content like screenshot */
+  padding: 60px 40px 60px 60px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  background-color: #000;
+}
+
+.card-hero-story .card-label {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.card-hero-story h3 {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.card-hero-story p {
+  color: #999;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.card-hero-image {
+  flex: 1;
   position: relative;
+  overflow: hidden;
 }
 
-.ecosystem-slide {
-  display: flex;
+.card-hero-image img {
   width: 100%;
-  height: 500px;
-  flex-shrink: 0;
-  align-items: center;
-  gap: 60px;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.9) contrast(1.1);
 }
 
-.ecosystem-content-left {
-  flex: 0 0 45%;
-  padding-right: 60px;
+.card-hero-image .image-vignette {
+  background: linear-gradient(to right, #000 0%, transparent 15%);
+}
+
+/* Standard spacer height since 5th card provides natural flow */
+.card-spacer {
+  height: 100vh; /* Scroll time per card */
+  pointer-events: none;
+}
+
+
+/* Clearance barrier — significantly reduced since 5th card provides natural flow */
+.ecosystem-clearance {
+  height: 20vh;
+  pointer-events: none;
+}
+
+/* ─── Content ─────────────────────────────────────────────── */
+.card-content {
+  flex: 1;
+  padding: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #000;
 }
 
-.ecosystem-content-meta {
-  color: #ff9000;
+.card-meta {
+  color: #555;
+  font-size: 12px;
   font-weight: 700;
-  font-size: 0.8rem;
-  margin-bottom: 15px;
   letter-spacing: 2px;
+  margin-bottom: 10px;
 }
 
-.ecosystem-content-left h2 {
-  font-size: 3rem;
+.card-label {
+  color: var(--lpu-orange);
+  font-size: 18px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.card-content h2 {
+  color: white;
+  font-size: 2.8rem;
   font-weight: 800;
   margin-bottom: 25px;
   line-height: 1.1;
-  color: #ffffff;
-  letter-spacing: -1px;
 }
 
-.ecosystem-content-left p {
-  font-size: 1.2rem;
+.card-content p {
+  color: #999;
+  font-size: 1.1rem;
   line-height: 1.6;
-  color: #94a3b8;
-  margin-bottom: 35px;
+  margin-bottom: 40px;
+  max-width: 500px;
 }
 
-.ecosystem-image-right {
-  flex: 0 0 55%;
+.btn-explore {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 2px;
+  border-bottom: 2px solid var(--lpu-orange);
+  padding-bottom: 5px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.btn-explore span {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  margin-left: 10px;
+}
+
+.btn-explore:hover {
+  color: var(--lpu-orange);
+}
+
+.btn-explore:hover span {
+  transform: translateX(10px);
+}
+
+/* ─── Image ────────────────────────────────────────────────── */
+.card-image-box {
+  flex: 1.2;
   position: relative;
-  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  height: 450px;
+  height: 100%;
 }
 
-.ecosystem-image-overlay {
+.card-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.9) contrast(1.1);
+}
+
+.image-vignette {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, rgba(11, 17, 32, 0.4), transparent);
-  z-index: 1;
+  background: linear-gradient(to right, #000 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.4) 100%);
 }
 
-.ecosystem-image-right img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 1.5s ease;
-}
-
-/* Ticker overrides to fit the sticky container */
-.ecosystem-ticker {
-  background-color: var(--lpu-orange);
-  color: #000;
-  padding: 12px 0;
-  margin-top: 30px;
-  white-space: nowrap;
-  overflow: hidden;
-  position: relative;
-}
-
-.ticker-content {
-  display: inline-block;
-  padding-left: 100%;
-  animation: ticker 30s linear infinite;
-  font-weight: 700;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-@keyframes ticker {
-  0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-100%, 0, 0); }
-}
-
-.ticker-item {
-  display: inline-block;
-  margin-right: 100px;
-}
-
-/* Responsive */
+/* ─── Responsive ───────────────────────────────────────────── */
 @media (max-width: 992px) {
-  .ecosystem-scroll-wrapper {
-    height: auto !important;
-  }
-  .ecosystem-sticky-container {
+  .ecosystem-card {
     position: relative !important;
     height: auto !important;
-    padding: 60px 0;
+    overflow: visible;
   }
-  .ecosystem-slider-outer {
-    height: auto !important;
-  }
-  .ecosystem-slider-container {
-    transform: none !important;
-  }
-  .ecosystem-slide {
+
+  .card-inner {
+    position: relative;
+    height: auto;
     flex-direction: column;
-    height: auto !important;
-    margin-bottom: 60px;
   }
-  .ecosystem-content-left {
-    flex: 0 0 100%;
-    padding-right: 0;
-    margin-bottom: 30px;
+
+  .card-content {
+    padding: 40px;
   }
-  .ecosystem-image-right {
-    flex: 0 0 100%;
+
+  .card-image-box {
     height: 300px;
+  }
+
+  .card-content h2 {
+    font-size: 2rem;
+  }
+
+  .card-spacer {
+    display: none;
   }
 }

@@ -16,7 +16,7 @@ const Programs = () => {
           setCourses(data);
         }
       } catch (err) {
-        console.error('Error fetching courses');
+        console.log('Error fetching courses, using empty/default state');
       }
       setLoading(false);
     };

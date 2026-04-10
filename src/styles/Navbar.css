@@ -207,8 +207,8 @@
 /* Overlapping Left Logo Setup */
 .absolute-logo-wrapper {
   position: absolute;
-  top: -32px; /* Hangs up over the top strip exactly like LPU */
-  left: 0;
+  top: -65px; /* Added slightly more space from the top */
+  left: 5px; /* Reduced space from the left */
   display: flex;
   align-items: center;
   gap: 10px;
@@ -221,7 +221,7 @@
   position: relative;
   top: 0;
   left: 0;
-  gap: 8px; /* Tighter gap for horizontal layout */
+  gap: 4px; /* Reduced from 8px to move emblem and MIU blocks closer */
 }
 
 .abs-emblem {
@@ -232,8 +232,16 @@
 }
 
 .absolute-logo-wrapper.logo-sticky .abs-emblem {
-  width: 40px;
-  height: 40px;
+  width: 70px; /* Further increased to 70px */
+  height: 70px;
+}
+
+.landing-logo {
+  height: 120px; /* Adjusted to look premium and substantial */
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3)); /* Makes it pop on background */
+  transition: all 0.3s ease;
 }
 
 /* LPU-style vertical initial boxes */
@@ -261,10 +269,10 @@
 }
 
 .absolute-logo-wrapper.logo-sticky .abs-miu-blocks span {
-  width: 25px;
-  height: 25px;
-  font-size: 15px;
-  border-radius: 2px;
+  width: 40px; /* Further increased to 40px */
+  height: 40px;
+  font-size: 22px; /* Increased to 22px */
+  border-radius: 4px;
 }
 
 /* Three stacked words exactly like LPU text */
@@ -283,6 +291,17 @@
   color: white; 
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
+}
+
+.other-page-header .top-links li a,
+.other-page-header .big-word {
+  color: var(--lpu-black) !important;
+}
+
+.other-page-nav .desktop-nav li a,
+.other-page-nav .search-btn,
+.other-page-nav .hamburger-btn {
+  color: var(--lpu-black) !important;
 }
 
 .absolute-logo-wrapper.logo-sticky .abs-text {

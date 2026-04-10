@@ -20,7 +20,7 @@ const Hero = () => {
           setHeroData(data.content);
         }
       } catch (err) {
-        console.error('Error fetching hero data, using defaults');
+        console.log('Using default hero data (settings not found)');
       }
     };
     fetchHero();

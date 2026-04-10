@@ -30,7 +30,7 @@ const InformationCell = () => {
 
         setSchoolsData(grouped);
       } catch (err) {
-        console.error('Error fetching courses:', err);
+        console.log('Error fetching courses (using defaults):', err.message);
       }
       setLoading(false);
     };

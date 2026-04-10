@@ -2,11 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import '@/styles/Navbar.css';
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isLandingPage = pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +33,7 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   return (
-    <header className="lpu-header">
+    <header className={`lpu-header ${!isLandingPage ? 'other-page-header' : ''}`}>
       <div className="top-strip">
         <div className="strip-flex edge-to-edge">
           <div className="strip-left">
@@ -56,20 +59,26 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className={`main-navbar ${isSticky ? 'sticky-nav' : ''}`}>
+      <div className={`main-navbar ${isSticky ? 'sticky-nav' : ''} ${!isLandingPage && !isSticky ? 'other-page-nav' : ''}`}>
         <div className="nav-flex edge-to-edge" style={{paddingRight: '20px'}}>
           <Link href="/" className={`absolute-logo-wrapper ${isSticky ? 'logo-sticky' : ''}`} style={{textDecoration: 'none', color: 'inherit'}}>
-            <img src="/emblem.png" alt="MIU Crest" className="abs-emblem" />
-            <div className="abs-miu-blocks">
-              <span>M</span>
-              <span>I</span>
-              <span>U</span>
-            </div>
-            <div className="abs-text">
-              <span className="big-word">MANIPUR</span>
-              <span className="big-word">INTERNATIONAL</span>
-              <span className="big-word">UNIVERSITY</span>
-            </div>
+            {!isSticky ? (
+              <img src="/images/MIU_Logo.png" alt="Manipur International University" className="landing-logo" />
+            ) : (
+              <>
+                <img src="/emblem.png" alt="MIU Crest" className="abs-emblem" />
+                <div className="abs-miu-blocks">
+                  <span>M</span>
+                  <span>I</span>
+                  <span>U</span>
+                </div>
+                <div className="abs-text">
+                  <span className="big-word">MANIPUR</span>
+                  <span className="big-word">INTERNATIONAL</span>
+                  <span className="big-word">UNIVERSITY</span>
+                </div>
+              </>
+            )}
           </Link>
           
           <nav className="desktop-nav">

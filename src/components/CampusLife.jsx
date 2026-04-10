@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '@/styles/CampusLife.css';
 
 const campusData = [
@@ -12,6 +12,17 @@ const campusData = [
 
 const CampusLife = () => {
   const [activeTab, setActiveTab] = useState(campusData[0]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((currentTab) => {
+        const currentIndex = campusData.findIndex(t => t.id === currentTab.id);
+        const nextIndex = (currentIndex + 1) % campusData.length;
+        return campusData[nextIndex];
+      });
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section id="campus" className="campus-section section-padding">
@@ -26,7 +37,7 @@ const CampusLife = () => {
             </p>
           </div>
           <div className="campus-cta">
-            <a href="#tour" className="btn btn-primary">Virtual Tour 360°</a>
+            <a href="#tour" className="btn btn-orange">Virtual Tour 360°</a>
           </div>
         </div>
 
