@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
 
 const MONGODB_URI = process.env.MONGODB_URI;
+const IS_PLACEHOLDER = !MONGODB_URI || MONGODB_URI.includes('PASTE_YOUR_MONGODB_URI_HERE');
 
-if (!MONGODB_URI && process.env.NODE_ENV === 'production') {
+if (IS_PLACEHOLDER && process.env.NODE_ENV === 'production') {
   console.warn(
     'Warning: Please define the MONGODB_URI environment variable inside .env.local'
   );
@@ -24,7 +25,7 @@ async function dbConnect() {
     return cached.conn;
   }
 
-  if (!MONGODB_URI) {
+  if (IS_PLACEHOLDER) {
     throw new Error(
       'Please define the MONGODB_URI environment variable inside .env.local'
     );
